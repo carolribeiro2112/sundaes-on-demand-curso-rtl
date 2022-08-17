@@ -11,9 +11,18 @@ function SummaryForm() {
     </span>
   );
   return (
-    <Form>
+    <Form
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <Form.Group controlId="terms-and-conditions">
         <Form.Check
+          style={{ width: "250px" }}
           type="checkbox"
           checked={tcChecked}
           onChange={(event) => setTcChecked(event.target.checked)}
