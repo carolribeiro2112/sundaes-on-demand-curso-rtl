@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import SummaryForm from "../SummaryForm";
 
 describe("SummaryForm", () => {
@@ -28,4 +29,5 @@ describe("SummaryForm", () => {
     fireEvent.click(checkbox);
     expect(button).toBeDisabled();
   });
+  it("should appear a popover when mouse is on terms and conditions", () => {});
 });
