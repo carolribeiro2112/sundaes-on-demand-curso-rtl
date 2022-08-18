@@ -1,4 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import SummaryForm from "../SummaryForm";
 
@@ -29,7 +33,7 @@ describe("SummaryForm", () => {
     userEvent.click(checkbox);
     expect(button).toBeDisabled();
   });
-  it("should appear a popover when mouse is on terms and conditions", () => {
+  it("should appear a popover when mouse is on terms and conditions", async () => {
     render(<SummaryForm />);
     //Popover starts out hidden
     const nullPopover = screen.queryByText(
@@ -46,9 +50,8 @@ describe("SummaryForm", () => {
     expect(popover).toBeInTheDocument();
     //Popover Disappears when we mouse out
     userEvent.unhover(termsAndConditions);
-    const nullPopoverAgain = screen.queryByText(
-      /no ice cream will actually be delivered/i
+    await waitForElementToBeRemoved(() =>
+      screen.queryByText(/no ice cream will actually be delivered/i)
     );
-    expect(nullPopoverAgain).not.toBeInTheDocument();
   });
 });
