@@ -66,21 +66,15 @@ describe("TotalUpdates", () => {
 });
 
 describe("Grand Total", () => {
-  it("should starts at $0.00", () => {
-    render(<OrderEntry />);
-
-    const grandTotal = screen.getByRole("heading", {
-      name: /grand total: \$/i,
-    });
-    expect(grandTotal).toHaveTextContent("0.00");
-  });
-
   it("should update grand total properly if scoop is added first", async () => {
     render(<OrderEntry />);
 
     const grandTotal = screen.getByRole("heading", {
       name: /grand total: \$/i,
     });
+    // check that grand total starts out at 0 (avoid the wrapped in act error)
+    expect(grandTotal).toHaveTextContent("0.00");
+
     const vanillaInput = await screen.findByRole("spinbutton", {
       name: "Vanilla",
     });
